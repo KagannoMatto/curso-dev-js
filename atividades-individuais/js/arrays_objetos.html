@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrays e Objetos</title>
+</head>
+<body>
+
+
+    <p>Pressione F12 para Exibir</p>
+
+    <script>
+
+        const playlist =  ["Chop Suey - Sytem of a Down", "Last Remmaining Light - Audioslave", "Duality - Slipknot"];
+        console.log(playlist [0]);
+
+        playlist.push("Black - Pearl Jam")
+        console.log(playlist);
+
+        playlist.pop();
+        console.log(playlist);
+
+        console.log(playlist.length);
+
+
+        
+    </script>
+
+    <script>
+        const filme = {titulo:"O Farol", ano:"2019", diretor: "Robert Eggers" }
+        console.log(`O filme ${filme.titulo}, dirigido por ${filme.diretor}, foi lançado em ${filme.ano}`);
+
+        filme.personagens = ["Thomas wake", "Thomas Howard", "Valeriia Karaman"];
+
+        console.log(filme.personagens[0]);
+
+        console.log(filme);
+
+
+
+    </script>
+    
+</body>
+</html>
