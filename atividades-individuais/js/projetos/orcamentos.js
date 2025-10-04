@@ -36,7 +36,9 @@ function atualizarOcamento(){
     const qtdPaginas = Number(inputPaginas.value);
     const porcentagemDesconto = Number(inputDesconto.value);
     const prazo = Number (inputPrazo.value);
-    const desingIncluid = checkboxDesign
+    const desingIncluid = checkboxDesign.checked;
+    const subtotal = calcularSubtotal(qtdPaginas);
+    const adicionalDesign = designIncluido ? PRECO_DESIGN_ADICIONAL : 0;
 
 
 }
