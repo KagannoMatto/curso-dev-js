@@ -24,11 +24,14 @@ const inputObs = document.querySelector("#user-obs");
 const form = document.querySelector("#user-form");
 const tabelaCorpo = document.querySelector("#user-table-body");
 
+let idEmEdicao = null;
+
 
 function mostrarTelaLista() {
     telaLista.classList.remove('d-none');
     telaCadastro.classList.add('d-none');
     renderizarTabela();
+    form.reset();
 }
 
 function mostrarTelaCadastro() {
@@ -41,6 +44,7 @@ function salvarUsuario(){
     const nome = inputNome.value;
     const sobrenome = inputSobrenome.value;
     const email = inputEmail.value;
+    const cep = inputCep.value;
     const rua = inputRua.value;
     const numero = inputNumero.value;
     const complemento = inputComplemento.value;
@@ -51,10 +55,23 @@ function salvarUsuario(){
 
 
     const usuario = {
-        id: id || Date.now(), nome, sobrenome, email, rua, numero, complemento, bairro, cidade, estado, obs
+        id: id || Date.now(), nome, sobrenome, email, rua, cep, numero, complemento, bairro, cidade, estado, obs
     }
-    usuarios.push(usuario);
+console.log(1);
+    if (idEmEdicao){
+        console.log(2);
+        const index = usuarios.findIndex(user => user.id === idEmEdicao); //omdex = 0; index = 2
+        if (index !== -1){
+        usuarios[index] = usuario;
+        }
+    }else{
+        console.log(3);
+        usuarios.push(usuario);
+    }
+
     salvarStorage();
+    form.reset();
+    mostrarTelaLista();
 }
 function salvarStorage(){
     localStorage.setItem("cadastro_usuarios", JSON.stringify(usuarios));
@@ -85,6 +102,30 @@ function excluirUsuario(id){
         salvarStorage();
         renderizarTabela();
     }
+}
+
+function editarUsuario(id){
+    const usuario = usuarios.find(user => user.id === id);
+    if (!usuario) return;
+
+    idEmEdicao = id;
+
+    inputId.value = usuario.id;
+    inputNome.value = usuario.nome;
+    inputSobrenome.value = usuario.sobrenomenome;
+    inputEmail.value = usuario.email;
+    inputCep.value = usuario.cep;
+    inputRua.value = usuario.rua;
+    inputNumero.value = usuario.numero;
+    inputComplemento.value = usuario.complemento;
+    inputBairro.value = usuario.bairro;
+    inputCidade.value = usuario.cidade;
+    inputEstado.value = usuario.estado;
+    inputObs.value = usuario.obs;
+
+    mostrarTelaCadastro()
+
+
 }
 
 function inicializar() {
